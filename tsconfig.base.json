@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@oauth/dashboard-ml": ["libs/dashboard-ml/src/index.ts"],
+      "@oauth/login": ["libs/login/src/index.ts"],
+      "@oauth/personal-info": ["libs/personal-info/src/index.ts"],
+      "@oauth/shared-config": ["libs/shared/src/index.ts"]
+    },
+    /*"paths": {
+      "@oauth/login": ["dist/libs/login/index.d.ts"],
+      "@oauth/personal-info": ["dist/libs/personal-info/index.d.ts"],
+      "@oauth/shared-config": ["dist/libs/shared/index.d.ts"],
+      "@oauth/dashboard-ml": ["dist/libs/dashboard-ml/index.d.ts"]
+    }*/
+  },
+  "exclude": ["node_modules", "tmp"]
+}

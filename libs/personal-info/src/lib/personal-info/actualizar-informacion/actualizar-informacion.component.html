@@ -1,0 +1,72 @@
+<div class="col-12 md:col-12">
+    <div class="card">
+        <h2>Administración de cuentas de usuario.</h2>
+        <p>
+            Realiza las siguientes acciones según tu necesidad: registra un nuevo usuario, desbloquea tu cuenta si has olvidado tu contraseña, o cambia tu contraseña para mayor seguridad.
+        </p>
+        <ul class="surface-card p-2 m-0 list-none flex overflow-x-auto select-none">
+            <li class="pr-3"><a pripple="" (click)="onPerson=true"
+                    class="p-ripple p-element cursor-pointer px-4 py-3 flex align-items-center hover:surface-100 border-round transition-colors transition-duration-150 bg-primary hover:bg-primary"><i
+                        class="pi pi-user mr-2"></i><span class="font-medium">Registrar usuario</span><span class="p-ink"
+                        style="height: 140px; width: 140px; top: -22px; left: 11px;"></span></a></li>
+            <li class="flex align-items-center">
+                <div class="border-right-1 surface-border" style="width: 1px; height: 50%;"></div>
+            </li>
+            <li class="px-3"><a pripple="" (click)="limpiar(); onUnclok=true"
+                    class="p-ripple p-element cursor-pointer px-4 py-3 flex align-items-center hover:surface-100 border-round transition-colors transition-duration-150 text-700"><i
+                        class="pi pi-lock-open mr-2"></i><span class="font-medium">Desbloquear usuario</span><span class="p-ink"
+                        style="height: 141px; width: 141px; top: -19.5px; left: 28.4531px;"></span></a></li>
+            <li class="flex align-items-center">
+                <div class="border-right-1 surface-border" style="width: 1px; height: 50%;"></div>
+            </li>
+            <li class="px-3"><a pripple=""  (click)="limpiar(); onPassword=true"
+                    class="p-ripple p-element cursor-pointer px-4 py-3 flex align-items-center hover:surface-100 border-round transition-colors transition-duration-150 text-700"><i
+                        class="pi pi-key mr-2"></i><span class="font-medium">Cambiar contraseña</span><span class="p-ink"
+                        style="height: 109px; width: 109px; top: -20.5px; left: 9.92188px;"></span></a></li>
+            <li class="flex align-items-center">
+                <div class="border-right-1 surface-border" style="width: 1px; height: 50%;"></div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Register Person-->
+<app-register-dialog [usuario]="usuario" [visible]="onPerson" (onPersonChange)="onPerson = $event"></app-register-dialog>
+<!------------------->
+
+<!--Olvide mi Contraseña-->
+<p-dialog header="Olvidaste tu contraseña?" [(visible)]="onPassword" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+    <div class="card p-fluid">
+        <div class="p-formgrid grid">
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.contrasenia" type="text" placeholder="Ingresar cédula" maxlength="10" (keypress)="util.textNumber($event)">                
+            </div>
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.user" type="text" placeholder="Ingresar usuario"  (keypress)="util.textStringNumber($event)"/>                
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton icon="pi pi-check" (click)="btnEnvTrxRemember()" label="Recordar" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+<!------------------->
+
+<!--Desbloquear Usuario-->
+<p-dialog header="Desbloquear Usuario" [(visible)]="onUnclok" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}" >
+    <div class="card p-fluid">
+        <div class="p-formgrid grid">
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.contrasenia" type="text" placeholder="Ingresar cédula" maxlength="10" (keypress)="util.textNumber($event)">                
+            </div>
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.user" type="text" placeholder="Ingresar usuario"  (keypress)="util.textStringNumber($event)"/>                
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton icon="pi pi-check" (click)="btnEnvTrxUnlock()" label="Desbloquear" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+<!------------------->

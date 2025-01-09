@@ -1,0 +1,79 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        
+        <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <img src="/global.png" alt="Image"  class="mb-3">
+                    <div class="text-900 text-3xl font-medium mb-3">Bienvenido al portal</div>
+                    <span class="text-600 font-medium">Todo tu administración en un solo lugar.</span>
+                </div>
+
+                <div> 
+                   <input [(ngModel)]="model.user" type="text" placeholder="Ingrese su usuario" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem"><br>
+                    
+                    <input [(ngModel)]="model.contrasenia" type="text" placeholder="Ingrese su contraseña" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+                    
+                    <!--
+                    <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                        <div class="flex align-items-center">
+                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)"
+                            (click)="onPerson=true">Registrarse</a>
+                        </div>
+                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)"
+                            (click)="onPassword=true">Olvidaste tu contraseña?</a>
+                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)"
+                            (click)="onUnclok=true">Desbloquear usuario</a>
+                    </div>                    
+                    <button pButton pRipple label="Iniciar Sesión" class="w-full p-3 text-xl" (click)="loginWithDb()"></button>
+                    <button id="login-google" class="w-full p-3 text-xl text-center" (click)="loginWithGoogle()">
+                        <i class="pi pi-google px-2"></i> Iniciar sesión con Google
+                    </button>
+                    <button id="login-google" class="w-full p-3 text-xl text-center" (click)="loginWithFacebook()">
+                        <i class="pi pi-facebook px-2"></i> Iniciar sesión con Facebook
+                    </button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!--Register Person-->
+<app-register-dialog [usuario]="usuario" [visible]="onPerson" (onPersonChange)="onPerson = $event"></app-register-dialog>
+<!------------------->
+
+<!--Olvide mi Contraseña-->
+<p-dialog header="Olvidaste tu contraseña?" [(visible)]="onPassword" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+    <div class="card p-fluid">
+        <div class="p-formgrid grid">
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.contrasenia" type="text" placeholder="Ingresar cédula" maxlength="10" (keypress)="util.textNumber($event)">                
+            </div>
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.user" type="text" placeholder="Ingresar usuario"  (keypress)="util.textStringNumber($event)"/>                
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton icon="pi pi-check" (click)="btnEnvTrxRemember()" label="Recordar" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+<!------------------->
+
+<!--Desbloquear Usuario-->
+<p-dialog header="Desbloquear Usuario" [(visible)]="onUnclok" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+    <div class="card p-fluid">
+        <div class="p-formgrid grid">
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.contrasenia" type="text" placeholder="Ingresar cédula" maxlength="10" (keypress)="util.textNumber($event)">                
+            </div>
+            <div class="field col">
+                <input pInputText [(ngModel)]="model.user" type="text" placeholder="Ingresar usuario"  (keypress)="util.textStringNumber($event)"/>                
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton icon="pi pi-check" (click)="btnEnvTrxUnlock()" label="Desbloquear" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+<!------------------->

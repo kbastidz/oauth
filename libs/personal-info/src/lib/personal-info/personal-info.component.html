@@ -1,0 +1,101 @@
+<div class="surface-card p-4 shadow-2 border-round">
+    <div class="mb-2 flex align-items-center justify-content-between">
+      <div class="flex align-items-center"><i class="pi pi-cloud text-500 mr-2 text-xl"></i>
+        <span class="text-xl font-medium text-900">¡Bienvenido, Nombres!</span>
+      </div>
+      <div>      
+        <p-button [label]="'Revisa tus cifras de ' + currentMonth" icon="pi pi-chart-line" class="statistics-button"></p-button>
+      </div>
+    </div>
+    <div class="font-medium text-500 mb-3">{{ currentDate }}</div>
+  </div>
+  
+  <br>
+  
+  <div class="card">
+    <form #formulario="ngForm" class="p-fluid" autocomplete="off">
+      <div class="p-formgrid grid">
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.persona.nombres" name="nombres" type="text" placeholder="Nombres" 
+                required #nombres="ngModel" (keypress)="util.textStringScape($event)" />
+            <div *ngIf="nombres.invalid && nombres.touched" class="p-error">El campo Nombres es requerido.</div>
+        </div>
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.persona.primerApellido" name="primerApellido" type="text" placeholder="Primer Apellido" 
+                required #primerApellido="ngModel" (keypress)="util.textStringNotScape($event)" />
+            <div *ngIf="primerApellido.invalid && primerApellido.touched" class="p-error">El campo Primer Apellido es requerido.</div>
+        </div>
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.persona.segundoApellido" name="segundoApellido" type="text" placeholder="Segundo Apellido" 
+                required #segundoApellido="ngModel" (keypress)="util.textStringNotScape($event)" />
+            <div *ngIf="segundoApellido.invalid && segundoApellido.touched" class="p-error">El campo Segundo Apellido es requerido.</div>
+        </div>
+      </div>
+  
+      <div class="p-formgrid grid">
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.persona.cedula" name="cedula" type="text" placeholder="Cédula" 
+                required maxlength="10" #cedula="ngModel" (keypress)="util.textNumber($event)" />
+            <div *ngIf="cedula.invalid && cedula.touched" class="p-error">El campo Cédula es requerido.</div>
+        </div>
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.persona.telefono" name="telefono" type="text" placeholder="Teléfono" 
+                maxlength="10" (keypress)="util.textNumber($event)" />
+        </div>
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.persona.email" name="email" type="text" placeholder="Email" 
+                required #email="ngModel" />
+            <div *ngIf="email.invalid && email.touched" class="p-error">El campo Email es requerido.</div>
+        </div>
+      </div>
+  
+      <div class="p-formgrid grid">
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.persona.contacto" name="contacto" placeholder="En caso de emergencia contactar al Telef." 
+                type="text" required #contacto="ngModel" />
+            <div *ngIf="contacto.invalid && contacto.touched" class="p-error">El campo Contacto es requerido.</div>
+        </div>
+        <div class="field col">
+          <p-dropdown 
+          [options]="itemsPaises" 
+          optionLabel="name" 
+          optionValue="name"
+          [(ngModel)]="usuario.persona.pais"   
+          placeholder="Seleccione su pais"
+          required #pais="ngModel"   
+          [style]="{display: 'flex'}" 
+          [ngModelOptions]="{standalone: true}"></p-dropdown> 
+            <div *ngIf="pais.invalid && pais.touched" class="p-error">El campo Pais es requerido.</div>
+        </div>
+      </div>
+  
+      <div class="p-formgrid grid">
+        <div class="field col">
+            <textarea rows="5" cols="30" [(ngModel)]="usuario.persona.direccion" name="direccion" placeholder="Dirección" 
+                pInputTextarea required #direccion="ngModel"></textarea>
+            <div *ngIf="direccion.invalid && direccion.touched" class="p-error">El campo Dirección es requerido.</div>
+        </div>
+      </div>
+
+      <div class="p-formgrid grid">
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.username" name="username" type="text" placeholder="Usuario" 
+                required #username="ngModel" (keypress)="util.textStringNumber($event)" />
+            <div *ngIf="username.invalid && username.touched" class="p-error">El campo Usuario es requerido.</div>
+        </div>
+        <div class="field col">
+            <input pInputText [(ngModel)]="usuario.contrasenia" name="contrasenia" type="text" placeholder="Contraseña" 
+                required #contrasenia="ngModel" (keypress)="util.textNotSpace($event)" />
+            <div *ngIf="contrasenia.invalid && contrasenia.touched" class="p-error">El campo Contraseña es requerido.</div>
+        </div>            
+      </div>
+  
+      <div class="p-formgrid grid">
+        <div class="field col-4">
+          <button pButton  [disabled]="formulario.invalid" (click)="btnEnvRequest()" 
+          label="Actualizar Información" class="p-button-outlined"></button>  
+        </div>     
+      </div>
+      
+    </form>
+  </div>
