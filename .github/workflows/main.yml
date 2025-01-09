@@ -25,7 +25,7 @@ jobs:
         run: npx nx build oauth --prod --output-path=dist/apps/oauth/browser --base-href="/oauth/"
 
       - name: Debug Build Output
-        run: ls -R oauth/dist/apps/oauth/browser
+        run: ls -R dist/apps/oauth/browser
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
