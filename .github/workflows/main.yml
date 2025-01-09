@@ -34,4 +34,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # Rama donde se publicará el contenido
-          folder: oauth/dist/apps/oauth/browser  # Ruta al directorio generado por el build
+          folder: dist/apps/oauth/browser  # Ruta al directorio generado por el build
