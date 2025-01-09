@@ -27,8 +27,8 @@ jobs:
 
       # 4. Construir el proyecto
       - name: Build OAuth project
-        run: npx nx build oauth --prod
-
+        run: npx nx build oauth --prod --base-href=/oauth/
+        
       # 5. Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
