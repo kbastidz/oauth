@@ -6,6 +6,7 @@ import { ActualizarInformacionComponent } from './personal-info/actualizar-infor
 export const personalInfoRoutes: Route[] = [
   //{ path: '', component: PersonalInfoComponent },
   { path: '', component: PersonalInfoComponent },
+  { path: 'personal-info/:id', component: PersonalInfoComponent },
   { path: 'consultar-personas', component: ConsultarPersonasComponent },
   { path: 'actualizar-informacion', component: ActualizarInformacionComponent}
 ];

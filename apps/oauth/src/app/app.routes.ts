@@ -18,12 +18,13 @@ export const appRoutes: Route[] = [
     redirectTo: '/notfound',
   },*/
   {
-    path: 'personal-info',
+    path: 'personal-info',    
     component: AppLayoutComponent,
     children: [
-      { path: '', component: PersonalInfoComponent },
+      { path: '', component: PersonalInfoComponent },      
       { path: 'consultar-personas', component: ConsultarPersonasComponent },
-      { path: 'actualizar-informacion', component: ActualizarInformacionComponent}
+      { path: 'actualizar-informacion', component: ActualizarInformacionComponent},
+      { path: ':id', component: PersonalInfoComponent },
     ],
   },
   {

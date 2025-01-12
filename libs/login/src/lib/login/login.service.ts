@@ -14,6 +14,12 @@ export class LoginService {
 
     constructor(private http:HttpClient, private httpService: HttpUtil) {}
 
+    envTokenTransaction(modelo:RqUsuario):Observable<RsTrxService>{        
+        modelo.user = "EKO001";
+        
+        return this.http.post<RsTrxService>(`${this.endPoint}generaToken`, modelo);
+    }
+
     envLoginTransaction(modelo:RqUsuario):Observable<RsTrxService>{        
         return this.http.post<RsTrxService>(`${this.endPoint}validateLogin`, modelo);
     }

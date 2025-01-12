@@ -10,7 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PersonalService } from './personal.service';
 import { DropdownModule } from "primeng/dropdown";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 registerLocaleData(localeEs);
 
@@ -38,21 +38,29 @@ export class PersonalInfoComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.envConsultaForIdUser();
+    //this.envConsultaForIdUserExteral();
+    this.envConsultaForIdUserInternal();
   }
 
-  constructor(private datePipe: DatePipe, private serv: PersonalService, private router: Router) {
+  constructor(private datePipe: DatePipe, private serv: PersonalService, private router: Router, private route: ActivatedRoute,) {
     this.currentDate = this.util.getFormattedDate(datePipe);
     this.currentMonth = this.util.getCurrentMonth(datePipe);
   }
 
-  envConsultaForIdUser(): void {    
+  envConsultaForIdUserExteral(): void {    
     if (this.util.validateIdUser(this.router) > 0){
       this.serv.envConsultTransactionUserId(this.util.validateIdUser(this.router)).subscribe({next: (resp) => {
         this.usuario = resp[0];
       }});
-    }
-    
+    }    
+  }
+
+  envConsultaForIdUserInternal(): void {    
+    const id = this.route.snapshot.paramMap.get('id');
+      this.serv.envConsultTransactionUserId(Number(id)).subscribe({next: (resp) => {
+        this.usuario = resp[0];
+      }});
+      
   }
 
   btnEnvRequest(): void { 

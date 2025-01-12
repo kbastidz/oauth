@@ -38,7 +38,8 @@
             <ng-template pTemplate="body" let-model>
                 <tr>
                     <td class="text-center">
-                        <p-button icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger" (onClick)="btnEnvInactiveRequest(model.id)" />
+                        <p-button class="mr-2" icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger" (onClick)="btnEnvInactiveRequest(model.id)" />
+                        <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" [raised]="true" severity="primary" (onClick)="btnEnvEditRequest(model.id)" />
                     </td>
                     <td>{{model.persona.nombres}}</td>
                     <td>{{model.persona.primerApellido}} {{model.persona.segundoApellido}}</td>

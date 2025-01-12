@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { Usuario, Util } from '@oauth/shared-config';
 import { PersonalService } from '../personal.service';
 import { InputTextModule } from 'primeng/inputtext';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultar-personas',
@@ -16,7 +17,7 @@ export class ConsultarPersonasComponent {
   util: Util = new Util();
   listUsuario!: Usuario[];
   usuario: Usuario = new Usuario();  
-  constructor(private serv: PersonalService) {  }
+  constructor(private serv: PersonalService, private router: Router) {  }
 
   ngOnInit() {
     this.envConsultUsuarios();
@@ -41,5 +42,9 @@ export class ConsultarPersonasComponent {
     }      
   }
 
+  btnEnvEditRequest(id: number){
+    this.router.navigate(['/personal-info', id]);
+    
+  }
 
 }

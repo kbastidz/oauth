@@ -71,8 +71,11 @@ export class LoginComponent {
   //Ref.3 Función para iniciar con el sistema
   loginWithDb() {
     if(this.model.user== "admin"){
-      
-      this.router.navigateByUrl('/personal-info/actualizar-informacion');
+      this.serv.envTokenTransaction(this.model).subscribe((resp) => {
+        sessionStorage.setItem('token', resp.token);
+        sessionStorage.setItem('rol', "admin");
+        this.router.navigateByUrl('/personal-info/actualizar-informacion');
+      });
     }else {
       this.serv.envLoginTransaction(this.model).subscribe((resp) => {
         this.validateResposeLogin(resp);
@@ -90,7 +93,11 @@ export class LoginComponent {
       sessionStorage.setItem('nombre', resp.message);
       sessionStorage.setItem('token', resp.token);
       sessionStorage.setItem('rol', resp.datoAdicional);
-      this.router.navigate(['/personal-info']);
+      let route = '/dashboard-ml';
+      if(resp.datoAdicional == "rrhh"){
+        route = route + '/dashboard-ml-rh'
+      }
+      this.router.navigate([route]);
     }else{
       this.util.NotificationError(resp.message);
 
