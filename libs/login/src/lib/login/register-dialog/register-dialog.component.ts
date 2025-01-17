@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { LoginService } from '../login.service';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from "primeng/dropdown";
-import { Usuario, Util, ValidatorForm } from '@oauth/shared-config';
+import { Persona, Usuario, Util, ValidatorForm } from '@oauth/shared-config';
 
 @Component({
   selector: 'app-register-dialog',
@@ -27,7 +27,8 @@ export class RegisterDialogComponent {
   @Input() usuario: Usuario = new Usuario();
   @Input() visible: boolean = false; 
   @Output() onPersonChange = new EventEmitter<boolean>();
-  
+  @ViewChild('formulario', { static: false }) formulario: NgForm | undefined;
+
   util: Util = new Util();
   validator: ValidatorForm = new ValidatorForm();
 
@@ -52,8 +53,17 @@ export class RegisterDialogComponent {
       this.util.NotificationError('err');
     });
     this.closeDialog();
+    this.initializeForm();
   }
 
+  initializeForm(): void {
+    this.usuario = new Usuario();
+    if (this.formulario) {
+      this.formulario.resetForm();
+    }
+  }
+
+  
   conf(res: any): void {
     this.util.validResponse(res);
     this.closeDialog();

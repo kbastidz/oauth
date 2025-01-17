@@ -69,7 +69,7 @@ export class LoginComponent {
   }
 
   //Ref.3 Función para iniciar con el sistema
-  loginWithDb() {
+  loginWithDb() {    
     if(this.model.user== "admin"){
       this.serv.envTokenTransaction(this.model).subscribe((resp) => {
         sessionStorage.setItem('token', resp.token);
@@ -83,8 +83,7 @@ export class LoginComponent {
         this.util.NotificationError('err');
         this.model = new RqUsuario(); 
       });
-    }
-    
+    }    
   }
 
   validateResposeLogin(resp: RsTrxService){

@@ -65,9 +65,10 @@ export class PersonalInfoComponent implements OnInit {
 
   btnEnvRequest(): void { 
     this.serv.envActualizarTransaction(this.usuario).subscribe((res) => {
-      (res.status == 200)  ?  this.util.validResponse(res) : this.util.NotificationError(res.message);
+      this.util.validResponse(res);      
     },() => {
       this.util.NotificationError('err');
     });    
+    this.usuario = new Usuario();
   }
 }

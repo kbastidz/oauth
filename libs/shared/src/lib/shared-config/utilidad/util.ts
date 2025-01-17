@@ -35,7 +35,7 @@ export class Util {
         text: description,
         icon: 'error',
         confirmButtonText: 'Aceptar',
-      }).then((result) => {
+      }).then((result: any) => {
         if (result.isConfirmed) {
           router.navigate(['/']);
         }

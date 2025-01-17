@@ -49,10 +49,10 @@
                     optionValue="name"
                     [(ngModel)]="usuario.persona.pais"   
                     placeholder="Seleccione su pais"
-                    required #pais="ngModel"   
+                    #pais="ngModel"   
                     [style]="{display: 'flex'}" 
                     [ngModelOptions]="{standalone: true}"></p-dropdown> 
-                <div *ngIf="pais.invalid && pais.touched" class="p-error">El campo Pais es requerido.</div>
+                
             </div>
         </div>
 

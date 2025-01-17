@@ -1,7 +1,7 @@
 export const environment = {
     production: false,
-    //endPointOTC: "https://localhost:7037/api/v1/OTC/",
-    endPointOTC: "https://oauth.somee.com/api/v1/OTC/",
+    endPointOTC: "https://localhost:7037/api/v1/OTC/",
+    //endPointOTC: "https://oauth.somee.com/api/v1/OTC/",
     firebase : {
         apiKey: "AIzaSyBfud42zSrZQ3FmZc0Kp9RcJVB7yYnDNyM",
         authDomain: "keyload-e1e55.firebaseapp.com",
